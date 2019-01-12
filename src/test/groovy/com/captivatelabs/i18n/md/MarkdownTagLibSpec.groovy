@@ -3,7 +3,7 @@ package com.captivatelabs.i18n.md
 import grails.testing.web.taglib.TagLibUnitTest
 import spock.lang.Specification
 
-class I18nTagLibSpec extends Specification implements TagLibUnitTest<I18nTagLib> {
+class MarkdownTagLibSpec extends Specification implements TagLibUnitTest<MarkdownTagLib> {
 
     def setup() {
         tagLib.i18nFileService = Stub(I18nFileService) {
@@ -17,7 +17,7 @@ class I18nTagLibSpec extends Specification implements TagLibUnitTest<I18nTagLib>
     def cleanup() {
     }
 
-    void "test render"() {
+    void "test render by key"() {
         when:
         String content = tagLib.render(key: "test")
 
@@ -25,9 +25,26 @@ class I18nTagLibSpec extends Specification implements TagLibUnitTest<I18nTagLib>
         content == "converted markdown"
     }
 
-    void "test missing key"() {
+    void "test render text"() {
+        when:
+        String content = tagLib.render(text: "some text")
+
+        then:
+        content == "converted some text"
+    }
+
+    void "test missing key and text"() {
         when:
         String content = tagLib.render()
+
+        then:
+        !content
+        thrown IllegalArgumentException
+    }
+
+    void "test both key and text"() {
+        when:
+        String content = tagLib.render(key: 'test', text: 'test')
 
         then:
         !content

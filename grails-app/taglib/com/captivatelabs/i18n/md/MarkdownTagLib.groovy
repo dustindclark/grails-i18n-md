@@ -4,7 +4,9 @@ import groovy.transform.CompileStatic
 import org.springframework.web.servlet.support.RequestContextUtils
 
 @CompileStatic
-class I18nTagLib {
+class MarkdownTagLib {
+    static namespace = 'md'
+
     I18nFileService i18nFileService
     MarkdownService markdownService
 
@@ -13,10 +15,13 @@ class I18nTagLib {
 
     def render = { Map attrs, body ->
         final String key = attrs.remove('key')
-        if (!key) {
-            throw new IllegalArgumentException("'key' attribute is required.")
+        final String text = attrs.remove('text')
+        if (!key && !text) {
+            throw new IllegalArgumentException("'key' or 'text' attribute is required.")
+        } else if (key && text) {
+            throw new IllegalArgumentException("Set either 'key' or 'text' attributes.  Not both.")
         }
-        final String markdown = i18nFileService.getMarkdown(key, RequestContextUtils.getLocale(request))
+        final String markdown = text ?: i18nFileService.getMarkdown(key, RequestContextUtils.getLocale(request))
         markdownService.render(markdown, out)
     }
 }
