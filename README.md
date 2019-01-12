@@ -10,8 +10,15 @@ can also use this plugin to extend messages.properties with markdown formatting.
 To use this plugin, first add the following dependency to your Grails 3 project:
 
 ```java
-compile 'com.captivatelabs.grails.plugins:i18n-md:0.1.x'
+repositories {
+    maven {
+        url "https://dl.bintray.com/captivatelabs/plugins"
+    }
+    ...
+dependencies {
+    compile 'com.captivatelabs.grails.plugins:i18n-md:0.x.x'
 ```
+Find the latest version # here: https://bintray.com/captivatelabs/plugins/i18n-md
 
 Then, create the following structure in your Grails project:
 
