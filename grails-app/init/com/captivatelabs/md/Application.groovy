@@ -1,4 +1,4 @@
-package com.captivatelabs.i18n.md
+package com.captivatelabs.md
 
 import grails.boot.*
 import grails.boot.config.GrailsAutoConfiguration

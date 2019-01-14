@@ -1,5 +1,5 @@
 # Grails Markdown Internationalization Plugin
-
+[![Build Status](https://travis-ci.org/dustindclark/grails-i18n-md.png?branch=master)](https://travis-ci.org/dustindclark/grails-i18n-md)
 ##grails-i18n-md
 
 This plugin applies the i18n/messages.properties concept and applies it to
@@ -29,9 +29,9 @@ https://bintray.com/captivatelabs/plugins/i18n-md
 Then, create the following structure in your Grails project:
 
 ```
-grails-app\i18n\md\<key>\default.md
-grails-app\i18n\md\<key>\es.md
-grails-app\i18n\md\<key>\pt_BR.md
+grails-app\markdown\<key>\default.md
+grails-app\markdown\<key>\es.md
+grails-app\markdown\<key>\pt_BR.md
 ...etc, etc.
 ```
 
@@ -43,16 +43,27 @@ tag to render your internationalized content:
 <md:render key="<key>" />
 ```
 
+Or render hard-coded markdown for testing:
+```gsp
+<md:render text="# A Header" />
+```
+
+You can also render a message out of messages.properties with markdown formatting:
+```properties
+message.code=**Some Markdown** formatting
+```
+```gsp
+<md:message code="message.code" />
+```
+
 This tag looks up your internationalized markdown based on the user's locale, and
 makes use of the [commonmark-java](https://github.com/atlassian/commonmark-java)
 library to convert this content into HTML.  Additionally, the content will be wrapped in a
-`<div class='i18n-md'>...</div>` so that you can contextually style your md accordingly.
+`<div class='markdown'>...</div>` so that you can contextually style your md accordingly.
 
 #TODO
-- Tag for rendering markdown from messages.properties
-- Add md injectable MD pre-processor and HTML post-processor.
-- Potentially make use of other markdown processors (or extend for customization)
-- Support Grails link building inside of .md files.
+- Generate HTML from Markdown at build time to improve performance (+ regenerate onChange)
+- Generate GSPs from markdown instead of HTML so that Grails tags work inside md files.
 
   
 

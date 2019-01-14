@@ -1,16 +1,15 @@
-package com.captivatelabs.i18n.md
+package com.captivatelabs.md
 
 import grails.testing.web.taglib.TagLibUnitTest
 import spock.lang.Specification
 
 class MarkdownTagLibSpec extends Specification implements TagLibUnitTest<MarkdownTagLib> {
-
+    private static final TAG_PREFIX = '<div class="markdown">'
+    private static final TAG_SUFFIX = '</div>'
     def setup() {
-        tagLib.i18nFileService = Stub(I18nFileService) {
-            getMarkdown(_, _) >> { String key, Locale locale -> return "markdown" }
-        }
         tagLib.markdownService = Stub(MarkdownService) {
-            render(_, _) >> { String content, Appendable out -> out.append("converted " + content) }
+            render(_, _, _) >> { String content, Locale locale, Appendable out -> out.append("converted " + content) }
+            render(_, _) >> { String markdown, Appendable out -> out.append("markdown text") }
         }
     }
 
@@ -22,7 +21,7 @@ class MarkdownTagLibSpec extends Specification implements TagLibUnitTest<Markdow
         String content = tagLib.render(key: "test")
 
         then:
-        content == "converted markdown"
+        content == "${TAG_PREFIX}converted test${TAG_SUFFIX}"
     }
 
     void "test render text"() {
@@ -30,7 +29,7 @@ class MarkdownTagLibSpec extends Specification implements TagLibUnitTest<Markdow
         String content = tagLib.render(text: "some text")
 
         then:
-        content == "converted some text"
+        content == "${TAG_PREFIX}markdown text${TAG_SUFFIX}"
     }
 
     void "test missing key and text"() {
