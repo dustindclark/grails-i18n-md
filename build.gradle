@@ -31,7 +31,7 @@ repositories {
     maven { url "https://repo.grails.org/grails/core" }
 }
 
-project.ext.isSnapshot =  version.toString().endsWith("-SNAPSHOT")
+project.ext.isSnapshot = version.toString().endsWith("-SNAPSHOT")
 apply from:"publish.gradle"
 
 dependencies {
