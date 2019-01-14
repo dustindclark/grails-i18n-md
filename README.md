@@ -23,9 +23,10 @@ dependencies {
     ...
 }
 ```
+Latest Version:[ ![Download](https://api.bintray.com/packages/captivatelabs/plugins/i18n-md/images/download.svg) ](https://bintray.com/captivatelabs/plugins/i18n-md/_latestVersion)
+
 Note the custom repo for this plugin, and the commonmark plugin is found in 
-Maven Central.  Find the latest version # here:
-https://bintray.com/captivatelabs/plugins/i18n-md
+Maven Central.
 
 Then, create the following structure in your Grails project:
 
