@@ -30,9 +30,9 @@ https://bintray.com/captivatelabs/plugins/i18n-md
 Then, create the following structure in your Grails project:
 
 ```
-grails-app\markdown\<key>\default.md
-grails-app\markdown\<key>\es.md
-grails-app\markdown\<key>\pt_BR.md
+grails-app\i18n\markdown\<key>\default.md
+grails-app\i18n\markdown\<key>\es.md
+grails-app\i18n\markdown\<key>\pt_BR.md
 ...etc, etc.
 ```
 

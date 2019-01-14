@@ -14,7 +14,7 @@ class MarkdownService implements ResourceLoaderAware {
     private static final Parser parser = Parser.builder().build()
     private static final HtmlRenderer renderer = HtmlRenderer.builder().build()
 
-    private static final String MARKDOWN_DIR = "markdown"
+    private static final String MARKDOWN_DIR = "i18n/markdown"
     private static final String CLASSPATH_PREFIX = "classpath:${MARKDOWN_DIR}/"
     private static final String FILE_PREFIX = "file:grails-app/${MARKDOWN_DIR}/"
     private static final String DEFAULT_FILE = "default"

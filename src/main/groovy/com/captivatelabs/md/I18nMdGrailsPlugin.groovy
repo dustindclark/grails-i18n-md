@@ -11,6 +11,7 @@ class I18nMdGrailsPlugin extends Plugin {
             "grails-app/controllers/**/*",
             "grails-app/views/**/*",
             "grails-app/i18n/*",
+            "grails-app/i18n/markdown/**/*"
     ]
     def title = "Grails i18n Markdown Plugin"
     def author = "Dustin Clark"
