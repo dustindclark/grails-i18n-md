@@ -1,6 +1,7 @@
 # Grails Markdown Internationalization Plugin
 [![Build Status](https://travis-ci.org/dustindclark/grails-i18n-md.png?branch=master)](https://travis-ci.org/dustindclark/grails-i18n-md)
-##grails-i18n-md
+
+## grails-i18n-md
 
 This plugin applies the i18n/messages.properties concept and applies it to
 larger files formatted in markdown.  The idea is to be able to internationalize
