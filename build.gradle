@@ -71,3 +71,11 @@ bootRepackage.enabled = false
 assets {
     packagePlugin = true
 }
+
+task copyMarkdownFiles(type: Copy) {
+    println "Copying markdown files..."
+    from fileTree(dir: 'grails-app/markdown')
+    into "${buildDir}/resources/main/markdown"
+}
+
+assemble.dependsOn copyMarkdownFiles
