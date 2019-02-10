@@ -33,7 +33,6 @@ class MarkdownTagLib {
     }
 
     def message = { Map attrs ->
-        //TODO: remove this nonsense: https://github.com/michelf/php-markdown/issues/230
         markdownService.render(getMessageValue(attrs), out, true)
     }
 

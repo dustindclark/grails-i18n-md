@@ -14,6 +14,7 @@ class MarkdownService implements ResourceLoaderAware {
     private static final Parser parser = Parser.builder().build()
     private static final HtmlRenderer renderer = HtmlRenderer.builder().build()
 
+
     private static final String MARKDOWN_DIR = "markdown"
     private static final String CLASSPATH_PREFIX = "classpath:${MARKDOWN_DIR}/"
     private static final String FILE_PREFIX = "file:grails-app/i18n/${MARKDOWN_DIR}/"
@@ -79,8 +80,8 @@ class MarkdownService implements ResourceLoaderAware {
             return
         }
         Node document = parser.parse(markdownContent)
-        //TODO: remove this nonsense: https://github.com/michelf/php-markdown/issues/230
         if (oneLine) {
+            //TODO: remove the need for this: https://github.com/atlassian/commonmark-java/issues/150
             String result = renderer.render(document)
             out.append(result.replaceFirst('<p>', '').replaceAll('</p>', ''))
         } else {

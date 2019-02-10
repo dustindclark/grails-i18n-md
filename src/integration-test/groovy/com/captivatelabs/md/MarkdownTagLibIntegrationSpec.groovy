@@ -42,7 +42,10 @@ class MarkdownTagLibIntegrationSpec extends GebSpec {
         go "/test/message?code=message.with.md"
 
         then:
-        $(".markdown p strong").text() == "Some text"
+        //No wrapping markdown container or p tag
+        $(".markdown p strong").text() != "Some text"
+        $(".markdown strong").text() != "Some text"
+        $("strong").text() == "Some text"
     }
 
 }
