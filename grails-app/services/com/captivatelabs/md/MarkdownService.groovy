@@ -74,12 +74,20 @@ class MarkdownService implements ResourceLoaderAware {
         render(reader, out)
     }
 
-    void render(String markdownContent, Appendable out) {
+    void render(String markdownContent, Appendable out, boolean oneLine = false) {
         if (!markdownContent) {
             return
         }
         Node document = parser.parse(markdownContent)
-        renderer.render(document, out)
+        //TODO: remove this nonsense: https://github.com/michelf/php-markdown/issues/230
+        if (oneLine) {
+            String result = renderer.render(document)
+            out.append(result.replaceFirst('<p>', '').replaceAll('</p>', ''))
+        } else {
+            renderer.render(document, out)
+        }
+
+
     }
 
     void render(Reader markdownContent, Appendable out) {

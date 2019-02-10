@@ -8,10 +8,11 @@ import org.springframework.web.servlet.support.RequestContextUtils
 class MarkdownTagLib {
     private static final String OPEN_TAG = '<div class="markdown">'
     private static final String CLOSE_TAG = '</div>'
+    private static final String ENCODE_AS = 'raw'
 
     MarkdownService markdownService
 
-    static defaultEncodeAs = [taglib: 'raw']
+    static defaultEncodeAs = [taglib: ENCODE_AS]
     static namespace = 'md'
 
     def render = { Map attrs ->
@@ -32,13 +33,13 @@ class MarkdownTagLib {
     }
 
     def message = { Map attrs ->
-        out << OPEN_TAG
-        markdownService.render(getMessageValue(attrs), out)
-        out << CLOSE_TAG
+        //TODO: remove this nonsense: https://github.com/michelf/php-markdown/issues/230
+        markdownService.render(getMessageValue(attrs), out, true)
     }
 
     @CompileDynamic
     private String getMessageValue(Map attrs) {
+        attrs.encodeAs = ENCODE_AS
         return g.message(attrs)
     }
 }
